@@ -5,7 +5,7 @@ Snakemake pipeline for obtaining sorted and indexed BAM files after read trimmin
 In the `config.yaml` file you should include details of samples to be analyzed and required bowtie index path as per specifications. You can also specify custom options for the trimming and alignment steps.
 
 ### Dependiencies
-* [python 3]
+* python 3
 * [snakemake](https://snakemake.readthedocs.io/en/stable/)
 * [bowtie](https://anaconda.org/bioconda/bowtie)
 * [samtools](http://www.htslib.org/)
