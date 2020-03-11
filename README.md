@@ -6,5 +6,6 @@ In the `config.yaml` file you should include details of samples to be analyzed a
 
 ### Dependiencies
 * [snakemake](https://snakemake.readthedocs.io/en/stable/)
-* [bowtie](http://bowtie-bio.sourceforge.net/index.shtml) for aligning short reads (< 50bp)
+* [bowtie](https://anaconda.org/bioconda/bowtie)
 * [samtools](http://www.htslib.org/)
+* [cutadapt](https://cutadapt.readthedocs.io/en/stable/)
