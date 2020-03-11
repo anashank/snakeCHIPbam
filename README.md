@@ -9,3 +9,11 @@ In the `config.yaml` file you should include details of samples to be analyzed a
 * [bowtie](https://anaconda.org/bioconda/bowtie)
 * [samtools](http://www.htslib.org/)
 * [cutadapt](https://cutadapt.readthedocs.io/en/stable/)
+
+### How to run?
+```bash
+Dry run: snakemake -n
+Actual run: snakemake --cores [number of cores]
+
+Run snakemake --unlock if directory is locked
+```
