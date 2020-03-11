@@ -1,0 +1,19 @@
+# Enter sample details
+samples:
+    s2: data/s2.fastq.gz
+
+
+# Parameters for read trimming using cutadapt
+trim_quality: 30
+
+trim_cores: 4
+
+trim_params: -m 5
+
+# Parameters for alignment using bowtie. Ensure that index path is provided as per bowtie specifications
+bowtie_params: ""
+
+bowtie_idx: ~/Downloads/hg19/hg19
+
+#Parameters for samtools sort
+sort_params: -m 2G -@ 8
