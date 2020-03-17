@@ -2,7 +2,20 @@ configfile: "config.yaml"
 
 rule all:
     input:
-        expand("sorted/{sample}.sorted.bam.bai", sample=config["samples"])
+        expand("sorted/{sample}.sorted.bam.bai", sample=config["samples"]),
+        expand("fastqc/{sample}_fastqc.zip", sample=config["samples"])
+
+
+rule fastqc:
+    input:  
+        "data/{sample}.fastq.gz"
+    output: 
+        "fastqc/{sample}_fastqc.zip", "fastqc/{sample}_fastqc.html"
+    log:    
+        "fastqclog/{sample}_fastqc"
+    shell:
+        "fastqc -o fastqc -f fastq --noextract {input} 2> {log}"
+    
 
 #Trim reads using cutadapt
 rule trim:
