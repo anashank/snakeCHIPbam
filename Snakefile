@@ -27,19 +27,27 @@ rule trim:
        "cutadapt -q {config[trim_quality]} --cores={config[trim_cores]} {config[trim_params]} -o {output} {input}"
 
 #Align reads using bowtie, remove unmapped reads and sort bam files
-rule align:
+rule align_sam:
    input:
        "trimmed/{sample}_trimmed.fastq.gz"
    output:
-       "sorted/{sample}.sorted.bam"
+       "samfiles/{sample}.sam"
    log:
-        bowtie = "log/{sample}.align",
-        samtools = "log/{sample}.sort"
-   params:
-        p1 = "{sample}.sam"
+        bowtie = "log/{sample}.align"
        
    shell:
-       "bowtie {config[bowtie_idx]} -q {input} -S 2> {log.bowtie}| samtools view -Sb -F 4 - | samtools sort {config[sort_params]} -o {output} 2> {log.samtools}"
+   		"bowtie {config[bowtie_idx]} -q {input} -S {output} 2> {log.bowtie}"
+
+#Convert sam to sorted bam files
+rule sort_bam:
+   input:
+       "samfiles/{sample}.sam"
+   output:
+       "sorted/{sample}.sorted.bam"
+   log:
+       samtools = "log/{sample}.sort"
+   shell:
+   		"samtools view -Sb -F 4 {input}| samtools sort {config[sort_params]} -o {output} 2> {log.samtools}"
 
 #Index bam files
 rule index_bam:
